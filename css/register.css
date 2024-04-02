@@ -12,12 +12,12 @@ body{
     align-items: center;
     justify-content: center;
     background: linear-gradient(90deg, #C7C5F4, #776BCC);		
-	
+
 	box-shadow: 0px 0px 24px #5C5696;
 }
 
 .nextBtn{
-    background: #fff;
+
 	font-size: 14px;
 	margin-top: 30px;
 	padding: 16px 20px;
@@ -28,11 +28,15 @@ body{
 	display: flex;
 	align-items: center;
 	width: 25%;
-	color: #4C489D;  background: linear-gradient(90deg, #C7C5F4, #776BCC);	
+	color: #4C489D; 
+     background: linear-gradient(90deg, #C7C5F4, #776BCC);	
 
 	box-shadow: 0px 2px 2px #5C5696;
 	cursor: pointer;
 	transition: .2s;
+}
+.btns{
+    display: flex;
 }
 .container{
     position: relative;
@@ -102,7 +106,7 @@ form.secActive .form.first{
     justify-content: space-between;
     flex-wrap: wrap;
 }
-input,textarea,select{
+input,textarea,select,option{
     background: #fff;
 	font-size: 14px;
 	margin-top: 30px;

@@ -1,3 +1,31 @@
+<?php
+if($_SERVER["REQUEST_METHOD"]=="POST"){
+$server='localhost';
+$user='root';
+$password='';
+$database='test';
+
+
+$username=$_POST['username'];
+$gender=$_POST['gender'];
+$adress=$_POST['adress'];
+$phone=$_POST['number'];
+$email=$_POST['email'];
+$date=$_POST['date'] ;
+
+
+$conn=new mysqli($server,$user,$password,$database);
+if(!$conn){
+    die(mysqli_connect_error());
+}
+$str="insert into users (username,gender,user_adress,phone,user_email,issued_date) values ('$username','$gender','$adress','$phone','$email','$date')";
+$conn->query($str); 
+
+header("Location:".$_SERVER['PHP_SELF']);
+exit;
+}
+?>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -13,10 +41,15 @@
    <title>Responsive Regisration Form </title>
 </head>
 <body>
+    <?php require 'startsession.php'?>
     <div class="container">
-        <header>Registration</header>
+      
+        <header>Registration</header><button class="nextBtn">
+                        <a href="users.php" style="text-decoration:none;color:white;" class="btnText">back</a>
+                        <i class="uil uil-navigator"></i>
+                    </button>
 
-        <form action="database.php" method="post">
+        <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
             <div class="form first">
                 <div class="details personal">
                     <span class="title">Personal Details</span><hr>
@@ -71,13 +104,14 @@
                             <input type="date" name="date" placeholder="Enter your issued date" required>
                         </div>
 
-                    </div>
+                    </div class="btns" >
 
                     <button class="nextBtn">
-                        <span class="btnText">Next</span>
+                        <span class="btnText" style="color:white;">Register</span>
                         <i class="uil uil-navigator"></i>
                     </button>
-                </div> 
+                  
+                </div>   
             </div>
 
           
@@ -87,5 +121,6 @@
  	
 </div>
     <script src="../products/js/register.js"></script>
+
 </body>
 </html>

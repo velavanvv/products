@@ -1,4 +1,4 @@
-const form = document.querySelector("form"),
+/* const form = document.querySelector("form"),
         nextBtn = form.querySelector(".nextBtn"),
         backBtn = form.querySelector(".backBtn"),
         allInput = form.querySelectorAll(".first input");
@@ -14,4 +14,4 @@ nextBtn.addEventListener("click", ()=> {
     })
 })
 
-backBtn.addEventListener("click", () => form.classList.remove('secActive'));
+backBtn.addEventListener("click", () => form.classList.remove('secActive')); */
