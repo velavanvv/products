@@ -5,23 +5,9 @@
   <!-- Required meta tags --> 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Regal Admin</title>
-  <!-- base:css -->
-  <link rel="stylesheet" type="text/css" href="../htdocs/products/css/vendors/mdi/css/materialdesignicons.min.css">
-  <link rel="stylesheet" type="text/css" href="../htdocs/products/css/vendors/feather/feather.css">
-  <link rel="stylesheet" type="text/css" href="../htdocs/products/css/vendors/base/vendor.bundle.base.css">
-  <!-- endinject -->
-  <!-- plugin css for this page -->
-  <link rel="stylesheet" href="../htdocs/products/css/vendors/flag-icon-css/css/flag-icon.min.css"/>
-  <link rel="stylesheet" href="../htdocs/products/css/vendors/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="../htdocs/products/css/vendors/jquery-bar-rating/fontawesome-stars-o.css">
-  <link rel="stylesheet" href="../htdocs/products/css/vendors/jquery-bar-rating/fontawesome-stars.css">
-  <!-- End plugin css for this page -->
-  <!-- inject:css -->
-  <link rel="stylesheet" href="../products/css/login.css">
-  <link rel="stylesheet" href="../htdocs/products/css/css/style.css">
-  <!-- endinject -->
-  <link rel="shortcut icon" href="images/favicon.png" />
+
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
   <div class="container-scroller" >
@@ -742,7 +728,8 @@
   <script src="vendors/jquery-bar-rating/jquery.barrating.min.js"></script>
   <!-- End plugin js for this page -->
   <!-- Custom js for this page-->
-  <script src="js/dashboard.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
   <!-- End custom js for this page-->
 </body>
 
