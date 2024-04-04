@@ -1,20 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>user details</title>
+
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <h1>welcome</h1>
+
 <?php require 'startsession.php'?>
+<?php include 'connection.php'?>
 <?php
 
 
 
-$server='localhost';
-$user='root';
-$password='';
-$database='test';
+$url="usersupdate.php";
+$deleteurl=$_SERVER["PHP_SELF"];
 
 
 
- 
-$conn=new mysqli($server,$user,$password,$database);
-if(!$conn){
-    die(mysqli_connect_error());
-}
  $str="select * from users";
 $result=$conn->query($str);
 
@@ -39,6 +45,9 @@ if($result->num_rows>0){
     <td>".$row["phone"]."</td>
     <td>".$row["user_email"]."</td>
     <td>".$row["issued_date"]."</td>
+    <td><button><a href='$url?id=".$row['user_id']."' style='text-decoration:none'>update</a></button></td><td>
+    <button><a href='$deleteurl?id=".$row['user_id']."' style='text-decoration:none' method='post'>delete</a></button></td>
+  
     </tr>";
 
        }    echo "</table>";
@@ -47,7 +56,24 @@ if($result->num_rows>0){
         echo "no result";
     }
 
+    if($_SERVER["REQUEST_METHOD"]=="GET"){
+
+        if(isset($_GET['id'])){
+            $id=$_GET['id'];
+           
+            $deleteurl=$_SERVER["PHP_SELF"];
+        
+            $delete="delete from users where user_id=$id";
+            $conn->query($delete);
+        header("Location:orders.php");
+            $conn->query($str);
+        }
+        
+        } 
 
 
 
-?>
+?>    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+</body>
+</html>

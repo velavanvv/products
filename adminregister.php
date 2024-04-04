@@ -3,16 +3,12 @@
 if($_SERVER["REQUEST_METHOD"]=="POST"){
 
 
-$username=$_POST['username'];
-$gender=$_POST['gender'];
-$adress=$_POST['adress'];
-$phone=$_POST['number'];
-$email=$_POST['email'];
-$date=$_POST['date'] ;
+
+$admin_name=$_POST['admin_name'];
+$admin_password=$_POST['admin_password'];
 
 
-
-$str="insert into users (username,gender,user_adress,phone,user_email,issued_date) values ('$username','$gender','$adress','$phone','$email','$date')";
+$str="insert into users (admin_name,admin_password) values ('$admin_name','$admin_password')";
 $conn->query($str); 
 
 header("Location:".$_SERVER['PHP_SELF']);
@@ -32,14 +28,14 @@ exit;
      
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
-   <title>user Regisration Form </title>
+   <title>admin Regisration Form </title>
 </head>
 <body>
     <?php require 'startsession.php'?>
     <div class="container">
       
         <header>Registration</header><button class="nextBtn">
-                        <a href="users.php" style="text-decoration:none;color:white;" class="btnText">back</a>
+                        <a href="admin.php" style="text-decoration:none;color:white;" class="btnText">back</a>
                         <i class="uil uil-navigator"></i>
                     </button>
 
@@ -51,28 +47,15 @@ exit;
                     <div class="fields">
                         <div class="input-field">
                             <label>Full Name</label>
-                            <input type="text" name="username" placeholder="Enter your name" required>
+                            <input type="text" name="admin_name" placeholder="Enter your name" required>
                         </div>
 
                        
 
-                        <div class="input-field">
-                            <label>Email</label>
-                            <input type="text" name="email" placeholder="Enter your email" required>
-                        </div>
-
+                    
                       
 
-                        <div class="input-field">
-                            <label>Gender</label>
-                            <select name="gender" required>
-                                <option disabled selected>Select gender</option>
-                                <option>Male</option>
-                                <option>Female</option>
-                                <option>Others</option>
-                            </select>
-                        </div>
-
+             
                     </div>
                 </div>
 

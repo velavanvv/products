@@ -2,17 +2,15 @@
 <?php
 if($_SERVER["REQUEST_METHOD"]=="POST"){
 
-
-$username=$_POST['username'];
-$gender=$_POST['gender'];
-$adress=$_POST['adress'];
-$phone=$_POST['number'];
-$email=$_POST['email'];
-$date=$_POST['date'] ;
-
+$pname=$_POST['pname'];
+$prupees=$_POST['prupees'];
+$pdate=$_POST['pdate'];
+$pcount=$_POST['pcount'];
+$pemail=$_POST['pemail'];
+$pnumber=$_POST['pnumber'] ;
 
 
-$str="insert into users (username,gender,user_adress,phone,user_email,issued_date) values ('$username','$gender','$adress','$phone','$email','$date')";
+$str="insert into products (product_name,product_rupees,product_date,product_count,product_email,product_number) values ('$pname','$prupees','$pdate','$pcount','$pemail','$pnumber')";
 $conn->query($str); 
 
 header("Location:".$_SERVER['PHP_SELF']);
@@ -32,70 +30,66 @@ exit;
      
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
-   <title>user Regisration Form </title>
+   <title>products Regisration Form </title>
 </head>
 <body>
     <?php require 'startsession.php'?>
     <div class="container">
       
-        <header>Registration</header><button class="nextBtn">
-                        <a href="users.php" style="text-decoration:none;color:white;" class="btnText">back</a>
+        <header>Product Registration</header><button class="nextBtn">
+                        <a href="products.php" style="text-decoration:none;color:white;" class="btnText">back</a>
                         <i class="uil uil-navigator"></i>
                     </button>
 
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
             <div class="form first">
                 <div class="details personal">
-                    <span class="title">Personal Details</span><hr>
+                    <span class="title">Product Details</span><hr>
 
                     <div class="fields">
                         <div class="input-field">
-                            <label>Full Name</label>
-                            <input type="text" name="username" placeholder="Enter your name" required>
+                            <label>product Name</label>
+                            <input type="text" name="pname" placeholder="Enter product name" required>
                         </div>
 
                        
 
                         <div class="input-field">
-                            <label>Email</label>
-                            <input type="text" name="email" placeholder="Enter your email" required>
+                            <label>product rupees</label>
+                            <input type="text" style="text- wieght: 2000px;" name="prupees" placeholder="Enter product amount" required>
                         </div>
 
                       
 
                         <div class="input-field">
-                            <label>Gender</label>
-                            <select name="gender" required>
-                                <option disabled selected>Select gender</option>
-                                <option>Male</option>
-                                <option>Female</option>
-                                <option>Others</option>
-                            </select>
+                            <label>product count</label>
+                            <input type="text" name="pcount"  style=" font-weight:1000;" placeholder="Enter count " required>
                         </div>
+
 
                     </div>
                 </div>
 
                 <div class="details ID">
-                    <span class="title">Identity Details</span><hr>
+                    <span class="title">product contact Details</span><hr>
 
                     <div class="fields">
                      
                      
                     <div class="input-field">
                             <label>Mobile Number</label>
-                            <input type="text" name="number" placeholder="Enter mobile number" required>
+                            <input type="text" name="pnumber" placeholder="Enter mobile number" required>
                         </div>
                       
 
                         <div class="input-field">
-                            <label>Adress</label>
-                            <textarea type="text" name="adress" placeholder="Enter Adress" required></textarea>
+                            <label>email</label>
+                            <input type="text" name="pemail" placeholder="Enter email Adress" required>
                         </div>
 
                         <div class="input-field">
-                            <label>Issued Date</label>
-                            <input type="date" name="date" placeholder="Enter your issued date" required>
+                            <label> Date</label>
+                            <input type="date" name="pdate" placeholder="Enter your issued date" required>
                         </div>
 
                     </div class="btns" >

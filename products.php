@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>products</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
@@ -21,10 +21,10 @@
 
     <div class="row mx-4">
         <div class="col-12 col-sm-6" class="text-decoration-none">
-        <a href="productregister.php" class="text-decoration-none">register</a>
+        <a href="productregistration.php" class="text-decoration-none">register</a>
     </div>
     <div class="col-12 col-sm-6">
-        <a href="productdetails.php" class="text-decoration-none">deatils</a>
+        <a href="productsdetails.php" class="text-decoration-none">deatils</a>
     </div>
 </div>
 </div>

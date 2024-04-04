@@ -1,3 +1,4 @@
+<?php include 'connection.php'?>
 <!DOCTYPE html>
 <html lang="en" >
 <head>
@@ -13,7 +14,7 @@
 <div class="container">
 	<div class="screen">
 		<div class="screen__content">
-   
+   <h1 ></h1>
 			<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post" class="login">        
                  <h1 class="intro">Admin login</h1><br>
 				<div class="login__field">
@@ -45,7 +46,7 @@
 </html>
 <?php
 
-if($_SERVER["REQUEST_METHOD"]="POST"){
+if($_SERVER["REQUEST_METHOD"]=="POST"){
 session_set_cookie_params([
 'lifetime' => 3600,
 'samesite'=>'Strict',
@@ -60,20 +61,16 @@ if(isset($_SESSION['user_id'])){
     header("Location: home.php");
     exit;
 }
-$server='localhost';
-$user='root';
-$password='';
-$database='test';
 
 if($_SERVER["REQUEST_METHOD"] =="POST"){
 
 $name=$_POST['name'];
+if(!empty($name)){
+	$message="name is required";
+}
 $pass=$_POST['password'];
  
-$conn=new mysqli($server,$user,$password,$database);
-if(!$conn){
-    die(mysqli_connect_error());
-}
+
  $str="select * from seller where admin_name= '$name' ";
 $result=$conn->query($str);
 
@@ -87,14 +84,13 @@ exit;
 	   
        }
        else {
-      
-        echo "<h1>password worng please enter correct pass</h1>";
-       }
+		header("Location: index.php");
+        }
     }
 }
 else {
 
-    echo "<h1>username worng please enter correct pass</h1>";
+	header("Location: index.php");
    }
 }
 }
