@@ -13,11 +13,15 @@ $date=$_POST['date'] ;
 
 
 $str="insert into users (username,gender,user_adress,phone,user_email,issued_date) values ('$username','$gender','$adress','$phone','$email','$date')";
+try{
 $conn->query($str); 
-
-header("Location:".$_SERVER['PHP_SELF']);
-exit;
+$message="<h1 style='background-color:green ;color:white'>registration success</h1>";
 }
+catch(Exception $e){
+    $message="<h1 style='background-color:red ;color:white'>user already exits</h1>";} 
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -37,34 +41,34 @@ exit;
 <body>
     <?php require 'startsession.php'?>
     <div class="container">
-      
-        <header>Registration</header><button class="nextBtn">
-                        <a href="users.php" style="text-decoration:none;color:white;" class="btnText">back</a>
-                        <i class="uil uil-navigator"></i>
-                    </button>
+    <div class="container">
+        <?php if(isset($message)):?>
+            <?php echo "<h1 style=' padding:10px;display:block;color:red;'> $message</h1>";?>
+        <?php endif;?>
+        <header>USER REGISTRATION</header>
 
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
             <div class="form first">
                 <div class="details personal">
-                    <span class="title">Personal Details</span><hr>
+                    <span class="title">PERSONAL DETAILS</span><hr>
 
                     <div class="fields">
                         <div class="input-field">
-                            <label>Full Name</label>
+                            <label>FULL NAME</label>
                             <input type="text" name="username" placeholder="Enter your name" required>
                         </div>
 
                        
 
                         <div class="input-field">
-                            <label>Email</label>
-                            <input type="text" name="email" placeholder="Enter your email" required>
+                            <label>EMAIL</label>
+                            <input type="text" name="email" placeholder="Enter your email" required pattern="[a-z]+[0-9]+@gmail.com" title="ENTER VALID EMAIL">
                         </div>
 
                       
 
                         <div class="input-field">
-                            <label>Gender</label>
+                            <label>GENDER</label>
                             <select name="gender" required>
                                 <option disabled selected>Select gender</option>
                                 <option>Male</option>
@@ -77,24 +81,24 @@ exit;
                 </div>
 
                 <div class="details ID">
-                    <span class="title">Identity Details</span><hr>
+                    <span class="title">IDENTITY DETAILS</span><hr>
 
                     <div class="fields">
                      
                      
                     <div class="input-field">
-                            <label>Mobile Number</label>
-                            <input type="text" name="number" placeholder="Enter mobile number" required>
+                            <label>MOBILE NUMBER</label>
+                            <input type="text" name="number" placeholder="Enter mobile number" required pattern="[0-9]{10}">
                         </div>
                       
 
                         <div class="input-field">
-                            <label>Adress</label>
+                            <label>ADRESS</label>
                             <textarea type="text" name="adress" placeholder="Enter Adress" required></textarea>
                         </div>
 
                         <div class="input-field">
-                            <label>Issued Date</label>
+                            <label>ISSUED DATE</label>
                             <input type="date" name="date" placeholder="Enter your issued date" required>
                         </div>
 

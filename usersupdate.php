@@ -35,12 +35,9 @@ while($row=$result->fetch_assoc()){
         $phone=$_POST['phone'];
         $email=$_POST['email'];
         $date=$_POST['date'] ;
-        $conn1=new mysqli($server,$user,$password,$database);
-if(!$conn1){
-    die(mysqli_connect_error());
-}
+
 $update= "update users set username='$uname',gender='$gender',user_adress='$adress',phone='$phone',user_email='$email',issued_date='$date' where user_id='$id'";
-$result1=$conn1->query($update); 
+$result1=$conn->query($update); 
 header("Location:userdetails.php");
 exit;
     }
@@ -60,21 +57,18 @@ exit;
      
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 
-   <title> product update Form </title>
+   <title> USER UPDATE FORM </title>
 </head>
 <body>
     <?php require 'startsession.php'?>
     <div class="container">
       
-        <header>Product updatation</header><button class="nextBtn">
-                        <a href="users.php" style="text-decoration:none;color:white;" class="btnText">back</a>
-                        <i class="uil uil-navigator"></i>
-                    </button>
+        <header>USER UPDATION</header>
 
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])."?id=$id"; ?>" method="post">
             <div class="form first">
                 <div class="details personal">
-                    <span class="title">Product Details</span><hr>
+                    <span class="title">USER DETAILS</span><hr>
 
                     <div class="fields">
                         <div class="input-field">
@@ -113,7 +107,7 @@ exit;
                      
                     <div class="input-field">
                             <label>MOBILE NUMBER</label>
-                            <input type="text" name="phone" value="<?php echo $phone;?>"  style=" font-weight:1000;" placeholder="Enter count " required>
+                            <input type="text" name="phone" value="<?php echo $phone;?>"  style=" font-weight:1000;" placeholder="Enter count " required  pattern="[0-9]{10}">
                         </div>
 
                       

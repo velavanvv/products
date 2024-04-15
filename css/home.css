@@ -1,11 +1,8 @@
-body {
-	font-family: 'Poppins', sans-serif;
-	font-size: 14px;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+
+.body{
+    background-color: aqua;
+}
+.card {
     background-color: black;
-}
-a {
-	color:#5f0099;
-}
-a:hover {
-	color:#5f0099;
 }

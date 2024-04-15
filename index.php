@@ -15,6 +15,7 @@
 	<div class="screen">
 		<div class="screen__content">
    <h1 ></h1>
+
 			<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post" class="login">        
                  <h1 class="intro">Admin login</h1><br>
 				<div class="login__field">

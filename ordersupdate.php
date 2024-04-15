@@ -38,12 +38,9 @@ while($row=$result->fetch_assoc()){
         $productid=$_POST['productid'];
         $ordercount=$_POST['ordercount'];
         
-        $conn1=new mysqli($server,$user,$password,$database);
-if(!$conn1){
-    die(mysqli_connect_error());
-}
+ 
 $update= "update orders set user_id='$userid',order_date='$orderdate',product_id='$productid',order_count='$ordercount' where orders_id='$id'";
-$result1=$conn1->query($update); 
+$result1=$conn->query($update); 
 header("Location:ordersdetails.php");
 exit;
     }
@@ -69,36 +66,33 @@ exit;
     <?php require 'startsession.php'?>
     <div class="container">
       
-        <header>Product updatation</header><button class="nextBtn">
-                        <a href="orders.php" style="text-decoration:none;color:white;" class="btnText">back</a>
-                        <i class="uil uil-navigator"></i>
-                    </button>
+        <header>ORDER UPDATION</header>
 
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])."?id=$id"; ?>" method="post">
             <div class="form first">
                 <div class="details personal">
-                    <span class="title">Product Details</span><hr>
+                    <span class="title">PRODUCT DETAILS</span><hr>
 
                     <div class="fields">
                         <div class="input-field">
-                            <label>user id</label>
+                            <label>USER ID</label>
                             <input type="text" name="userid" value="<?php echo $userid;?>" placeholder="Enter product name" required>
                         </div>
                         <div class="input-field">
-                            <label> product id</label>
+                            <label> PRODUCT ID</label>
                             <input type="text" name="productid" value="<?php echo $productid;?>" placeholder="Enter your issued date" required>
                         </div>
                        
 
                         <div class="input-field">
-                            <label>order date</label>
+                            <label>DELEVERED DATE</label>
                             <input type="date" style="text- wieght: 2000px;" value="<?php echo $orderdate;?>" name="orderdate" placeholder="Enter product amount" required>
                         </div>
 
                       
 
                         <div class="input-field">
-                            <label>order count</label>
+                            <label>DELEVER COUNT</label>
                             <input type="text" name="ordercount" value="<?php echo $ordercount;?>"  style=" font-weight:1000;" placeholder="Enter count " required>
                         </div>
 

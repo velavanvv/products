@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>user details</title>
-
- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../products/css/details.css">   
 </head>
 <body>
-    <h1>welcome</h1>
+
 
 <?php require 'startsession.php'?>
 <?php include 'connection.php'?>
@@ -27,15 +26,16 @@ $result=$conn->query($str);
 if($result->num_rows>0){
   
   
-        echo "<table border='1'>
-        <tr>
+        echo "<div class='table-wrapper'>
+        <table class='fl-table'>
+        <thead><tr>
         <th>user_id</th>
         <th>user_name</th>
         <th>user_gender</th>
         <th>user_adress</th>
         <th>user_phone</th>
         <th>user_gmail</th>
-        <th>isssue_Date</th></tr>";
+        <th>isssue_Date</th></tr></thead><tbody>";
         while($row=$result->fetch_assoc()){
     echo "<tr>
     <td>".$row["user_id"]."</td>
@@ -45,12 +45,20 @@ if($result->num_rows>0){
     <td>".$row["phone"]."</td>
     <td>".$row["user_email"]."</td>
     <td>".$row["issued_date"]."</td>
-    <td><button><a href='$url?id=".$row['user_id']."' style='text-decoration:none'>update</a></button></td><td>
-    <button><a href='$deleteurl?id=".$row['user_id']."' style='text-decoration:none' method='post'>delete</a></button></td>
+    <td><button class='update' style='  display:inline-block;
+    padding: 10px 20px;
+    font-size:16px;
+    font-weight:bold;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid #000;
+    border-radius:5px;
+    background-color: #fff;
+    cursor: pointer;'><a style='color:black;text-decoration:none;'href='$url?id=".$row['user_id']."' style='text-decoration:none'>update</a></button></td>
   
     </tr>";
 
-       }    echo "</table>";
+       }    echo "</tbody></table></div>";
      
     }else{
         echo "no result";
@@ -65,7 +73,7 @@ if($result->num_rows>0){
         
             $delete="delete from users where user_id=$id";
             $conn->query($delete);
-        header("Location:orders.php");
+
             $conn->query($str);
         }
         
@@ -76,4 +84,13 @@ if($result->num_rows>0){
 ?>    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
 </body>
-</html>
+</html><!--  <button class='update' style='  display:inline-block;
+    padding: 10px 20px;
+    font-size:16px;
+    font-weight:bold;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid #000;
+    border-radius:5px;
+    background-color: #fff;
+    cursor: pointer;'><a style='color:black;text-decoration:none;' href='$deleteurl?id=".$row['user_id']."' style='text-decoration:none' method='post'>delete</a></button> -->

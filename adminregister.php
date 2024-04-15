@@ -7,13 +7,16 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
 $admin_name=$_POST['admin_name'];
 $admin_password=$_POST['admin_password'];
 
-
-$str="insert into users (admin_name,admin_password) values ('$admin_name','$admin_password')";
+try{
+$str="insert into seller (admin_name,admin_password) values ('$admin_name','$admin_password')";
 $conn->query($str); 
 
-header("Location:".$_SERVER['PHP_SELF']);
-exit;
+$message="<h1 style='background-color:green ;color:white'>registration success</h1>";
 }
+catch(Exception $e){
+    $message="<h1 style='background-color:red ;color:white'>ADMIN already exits</h1>";} 
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -33,62 +36,44 @@ exit;
 <body>
     <?php require 'startsession.php'?>
     <div class="container">
+    <?php if(isset($message)):?>
+            <?php echo "<h1 style=' padding:10px;display:block;color:red;'> $message</h1>";?>
+        <?php endif;?>
       
-        <header>Registration</header><button class="nextBtn">
-                        <a href="admin.php" style="text-decoration:none;color:white;" class="btnText">back</a>
-                        <i class="uil uil-navigator"></i>
-                    </button>
+        <header>ADMIN REGISTRATION</header>
 
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
             <div class="form first">
                 <div class="details personal">
-                    <span class="title">Personal Details</span><hr>
+                    <span class="title">PERSONAL DETAILS</span><hr>
 
                     <div class="fields">
                         <div class="input-field">
-                            <label>Full Name</label>
+                            <label>FULL NAME</label>
                             <input type="text" name="admin_name" placeholder="Enter your name" required>
                         </div>
 
                        
+           
+
+                        <div class="input-field">
+                            <label>PASSWORD</label>
+                            <input type="text" name="admin_password" placeholder="Enter password" required></input>
+                        </div>
+
 
                     
-                      
+                        <button class="nextBtn">
+                        <span class="btnText" style="color:white;">Register</span>
+                        <i class="uil uil-navigator"></i>
+                    </button>
+                  
 
              
                     </div>
                 </div>
 
-                <div class="details ID">
-                    <span class="title">Identity Details</span><hr>
-
-                    <div class="fields">
-                     
-                     
-                    <div class="input-field">
-                            <label>Mobile Number</label>
-                            <input type="text" name="number" placeholder="Enter mobile number" required>
-                        </div>
-                      
-
-                        <div class="input-field">
-                            <label>Adress</label>
-                            <textarea type="text" name="adress" placeholder="Enter Adress" required></textarea>
-                        </div>
-
-                        <div class="input-field">
-                            <label>Issued Date</label>
-                            <input type="date" name="date" placeholder="Enter your issued date" required>
-                        </div>
-
-                    </div class="btns" >
-
-                    <button class="nextBtn">
-                        <span class="btnText" style="color:white;">Register</span>
-                        <i class="uil uil-navigator"></i>
-                    </button>
-                  
-                </div>   
+                
             </div>
 
           

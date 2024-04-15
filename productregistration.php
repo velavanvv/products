@@ -9,13 +9,15 @@ $pcount=$_POST['pcount'];
 $pemail=$_POST['pemail'];
 $pnumber=$_POST['pnumber'] ;
 
-
+try{
 $str="insert into products (product_name,product_rupees,product_date,product_count,product_email,product_number) values ('$pname','$prupees','$pdate','$pcount','$pemail','$pnumber')";
 $conn->query($str); 
-
-header("Location:".$_SERVER['PHP_SELF']);
-exit;
+$message="<h1 style='background-color:green ;color:white'>registration success</h1>";
 }
+catch(Exception $e){
+    $message="<h1 style='background-color:red ;color:white'>product already exits</h1>";} 
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -35,34 +37,32 @@ exit;
 <body>
     <?php require 'startsession.php'?>
     <div class="container">
-      
-        <header>Product Registration</header><button class="nextBtn">
-                        <a href="products.php" style="text-decoration:none;color:white;" class="btnText">back</a>
-                        <i class="uil uil-navigator"></i>
-                    </button>
-
+    <?php if(isset($message)):?>
+            <?php echo "<h1 style=' padding:10px;display:block;color:red;'> $message</h1>";?>
+        <?php endif;?>   
+        <header>PRODUCT REGISTRATION</header>
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
             <div class="form first">
                 <div class="details personal">
-                    <span class="title">Product Details</span><hr>
+                    <span class="title">PRODUCT DETAILS</span><hr>
 
                     <div class="fields">
                         <div class="input-field">
-                            <label>product Name</label>
+                            <label>PRODUCT NAME</label>
                             <input type="text" name="pname" placeholder="Enter product name" required>
                         </div>
 
                        
 
                         <div class="input-field">
-                            <label>product rupees</label>
+                            <label>PRODUCT RUPEES</label>
                             <input type="text" style="text- wieght: 2000px;" name="prupees" placeholder="Enter product amount" required>
                         </div>
 
                       
 
                         <div class="input-field">
-                            <label>product count</label>
+                            <label>PRODUCT COUNT</label>
                             <input type="text" name="pcount"  style=" font-weight:1000;" placeholder="Enter count " required>
                         </div>
 
@@ -71,24 +71,24 @@ exit;
                 </div>
 
                 <div class="details ID">
-                    <span class="title">product contact Details</span><hr>
+                    <span class="title">PRODUCT CONDUCT DETAILS</span><hr>
 
                     <div class="fields">
                      
                      
                     <div class="input-field">
-                            <label>Mobile Number</label>
-                            <input type="text" name="pnumber" placeholder="Enter mobile number" required>
+                            <label>MOBILE NUMBER</label>
+                            <input type="text" name="pnumber" placeholder="Enter mobile number" required pattern="[0-9]{10}">
                         </div>
                       
 
                         <div class="input-field">
-                            <label>email</label>
+                            <label>EMAIL</label>
                             <input type="text" name="pemail" placeholder="Enter email Adress" required>
                         </div>
 
                         <div class="input-field">
-                            <label> Date</label>
+                            <label> DATE</label>
                             <input type="date" name="pdate" placeholder="Enter your issued date" required>
                         </div>
 

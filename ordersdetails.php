@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>orders details</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="../products/css/details.css">   
 </head>
 <body>
 
@@ -13,29 +13,111 @@
 <?php include 'connection.php'?>
 <?php
   $deleteurl="";
-  $url="ordersupdate.php";
+  $url=$_SERVER["PHP_SELF"];
+  $updateurl="ordersupdate.php";
 
-
- $str="select o.orders_id,u.username,u.phone,p.product_name,p.product_rupees,o.order_count,order_date
+ $str="select o.orders_id,u.username,u.phone,p.product_name,p.product_rupees,o.order_count,o.order_date,o.total
  from orders o join users u on o.user_id =u.user_id join
  products p on o.product_id = p.product_id ";
-$result=$conn->query($str);
-$deleteurl=$_SERVER["PHP_SELF"];
+ $result=$conn->query($str);
+if($_SERVER["REQUEST_METHOD"]=="GET"){
+
+    if(isset($_GET['username'])){
+    
+        $str="select o.orders_id,u.username,u.phone,p.product_name,p.product_rupees,o.order_count,o.order_date,o.total
+        from orders o join users u on o.user_id =u.user_id join
+        products p on o.product_id = p.product_id order by u.username asc";
+
+        $result=$conn->query($str);
+        
+    }
+    
+    } 
+    if($_SERVER["REQUEST_METHOD"]=="GET"){
+
+        if(isset($_GET['productname'])){
+        
+            $str="select o.orders_id,u.username,u.phone,p.product_name,p.product_rupees,o.order_count,o.order_date,o.total
+            from orders o join users u on o.user_id =u.user_id join
+            products p on o.product_id = p.product_id order by p.product_name asc";
+    
+            $result=$conn->query($str);
+            
+        }
+        
+        } 
+        if($_SERVER["REQUEST_METHOD"]=="GET"){
+
+            if(isset($_GET['productrupees'])){
+            
+                $str="select o.orders_id,u.username,u.phone,p.product_name,p.product_rupees,o.order_count,o.order_date,o.total
+                from orders o join users u on o.user_id =u.user_id join
+                products p on o.product_id = p.product_id order by p.product_rupees asc";
+        
+                $result=$conn->query($str);
+                
+            }
+            
+            } 
+            if($_SERVER["REQUEST_METHOD"]=="GET"){
+
+                if(isset($_GET['count'])){
+                
+                    $str="select o.orders_id,u.username,u.phone,p.product_name,p.product_rupees,o.order_count,o.order_date,o.total
+                    from orders o join users u on o.user_id =u.user_id join
+                    products p on o.product_id = p.product_id order by o.order_count asc";
+            
+                    $result=$conn->query($str);
+                    
+                }
+                
+                } 
+                if($_SERVER["REQUEST_METHOD"]=="GET"){
+
+                    if(isset($_GET['total'])){
+                    
+                        $str="select o.orders_id,u.username,u.phone,p.product_name,p.product_rupees,o.order_count,o.order_date,o.total
+                        from orders o join users u on o.user_id =u.user_id join
+                        products p on o.product_id = p.product_id order by o.total asc";
+                
+                        $result=$conn->query($str);
+                        
+                    }
+                    
+                    } 
+                if($_SERVER["REQUEST_METHOD"]=="GET"){
+
+                    if(isset($_GET['date'])){
+                    
+                        $str="select o.orders_id,u.username,u.phone,p.product_name,p.product_rupees,o.order_count,o.order_date,o.total
+                        from orders o join users u on o.user_id =u.user_id join
+                        products p on o.product_id = p.product_id order by o.order_date asc";
+                
+                        $result=$conn->query($str);
+                        
+                    }
+                    
+                    } 
+        
+
 if($result->num_rows>0){
   
   
-        echo "<table border='1'>
+        echo "<div class='table-wrapper'>
+        <table class='fl-table'>
+        <thead>
         <tr>
-        <th>orders_id</th>
-        <th>user_name</th>
-        <th>user_phne</th>
-        <th>product_name</th>
-        <th>product_rupees</th>
-        <th>order_count</th>
-        <th>order_date</th>
-        <th>toatal amount</th>
-
+        <th>delevered_id</th>
+        <th><a style='color:white;text-decoration:none;' href='$url?username=user' style='text-decoration:none'>username</a></th>
+        <th>user_phone</th>
+        <th><a style='color:white;text-decoration:none;' href='$url?productname=product' style='text-decoration:none'>product_name</a></th>
+        <th><a style='color:white;text-decoration:none;' href='$url?productrupees=ruppees' style='text-decoration:none'>product_rupees</a></th>
+        <th><a style='color:white;text-decoration:none;' href='$url?count=count' style='text-decoration:none'>delever_count</a></th>
+        <th><a style='color:white;text-decoration:none;' href='$url?date=date' style='text-decoration:none'>delevered_date</a></th>
+        <th><a style='color:white;text-decoration:none;' href='$url?total=total' style='text-decoration:none'>total</a></th>
    
+
+   </tr></thead><tbody>
         ";
         while($row=$result->fetch_assoc()){
     echo "<tr>
@@ -46,44 +128,53 @@ if($result->num_rows>0){
     <td>".$row["product_rupees"]."</td>
     <td>".$row["order_count"]."</td>
     <td>".$row["order_date"]."</td>
-    <td>".$row["order_count"]*$row["product_rupees"]."</td>
-    <td><button><a href='$deleteurl?id=".$row['orders_id']."' style='text-decoration:none' method='post'>delete</a></button></td> 
-    <td><button><a href='$url?id=".$row['orders_id']."' style='text-decoration:none'>update</a></button></td><td>
+    <td>".$row["total"]."</td>
+   
+    <td><button class='update' style='  display:inline-block;
+    padding: 10px 20px;
+    font-size:16px;
+    font-weight:bold;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid #000;
+    border-radius:5px;
+    background-color: #fff;
+    cursor: pointer;'><a style='color:black;text-decoration:none;' href='$updateurl?id=".$row['orders_id']."' style='text-decoration:none'>update</a></button></td><td>
     </tr>";
 
-       }    echo "</table>";
+       }    echo "</tbody></table>";
      
     }
     else{
         echo "<table border='1'>
         <tr>
-        <th>product_id</th>
+        <th>order_id</th>
+        <th>usernane_name</th>
+        <th>phone</th>
         <th>product_name</th>
-        <th>product_count</th>
-        <th>product_email</th>
-        <th>product_number</th>
         <th>product_rupees</th>
-        <th>product_date</th>
-</tr></table>";
+        <th>delever_count</th>
+        <th>delever_date</th>
+</tr></table></div>";
     }
 
-if($_SERVER["REQUEST_METHOD"]=="GET"){
-
-if(isset($_GET['id'])){
-    $id=$_GET['id'];
+     
    
-    $deleteurl=$_SERVER["PHP_SELF"];
-
-    $delete="delete from orders where orders_id=$id";
-    $conn->query($delete);
-header("Location:orders.php");
-    $conn->query($str);
-}
-
-} 
-    
 ?> 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script>
+    // Function to make AJAX request to PHP script
+    // Fetch specific data from PHP script
+fetch('test.php')
+  .then(response => response.json())  // Parse the response as JSON
+  .then(data => {
+    // Process the parsed JSON data
+    console.log(data);  // Output the parsed JSON data
+    // You can access properties of the data object here and perform further processing
+  })
+  .catch(error => console.error('Error fetching data:', error));
+
+</script>
 </body>
 </html>
