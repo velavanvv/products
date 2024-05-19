@@ -46,7 +46,6 @@
 </body>
 </html>
 <?php
-
 if($_SERVER["REQUEST_METHOD"]=="POST"){
 session_set_cookie_params([
 'lifetime' => 3600,
